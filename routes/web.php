@@ -87,7 +87,7 @@ Route::group([
 });
 // View Composer
 View::composer('layouts.frontend.inc.footer', function ($view) {
-    $placetypes = App\Placetype::all();
+    $placetypes = App\Models\Placetype::all();
     $view->with('placetypes', $placetypes);
 });
 
