@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Booking;
-use App\Guide;
+use App\Models\Booking;
+use App\Models\Guide;
 use App\Http\Controllers\Controller;
 use App\Notifications\PackageApproveConfirmation;
 use Carbon\Carbon;

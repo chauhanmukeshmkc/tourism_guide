@@ -13,7 +13,7 @@
           <a href="{{ Auth::user()->role_id == 1 ? route('admin.profile.show') : route('user.profile.show') }}">
             <img src="{{  Auth::user()->image != 'default.png' ?  asset('storage/profile_photo/' . Auth::user()->image ) :  asset('assets/admin/img/user2-160x160.jpg')  }}" class="img-circle elevation-2" alt="User Image">
           </a>
-          
+
         </div>
         <div class="info">
           <a href="{{ Auth::user()->role_id == 1 ? route('admin.profile.show') : route('user.profile.show') }}" class="d-block font-weight-bold">{{ Auth::user()->name }}</a>
@@ -23,7 +23,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
+
 
           @if (Request::is('admin*'))
           <li class="nav-item has-treeview active">
@@ -145,7 +145,7 @@
             </p>
           </a>
         </li>
-        
+
 
 
 
@@ -157,7 +157,7 @@
                 <i class="fas fa-tachometer-alt"></i>
                 <p class="pl-2">
                   Dashboard
-                 
+
                 </p>
               </a>
             </li>
@@ -224,7 +224,7 @@
                 </p>
               </a>
             </li>
-    
+
 
             <li class="nav-item has-treeview">
               <a href="{{ route('user.tour.history') }}" class="nav-link {{ Request::is('user/tour-history/list') ? 'active' : '' }}">

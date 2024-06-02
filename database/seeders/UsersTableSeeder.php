@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
+namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use DB;
 class UsersTableSeeder extends Seeder
 {
     /**

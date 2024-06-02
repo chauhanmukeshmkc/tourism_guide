@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Place;
+use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Placetype;
 
@@ -42,11 +42,11 @@ class TypeController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:placetypes'
         ]);
-    
+
         $types = new Placetype();
         $types->name = $request->name;
         $types->save();
-    
+
             return redirect(route('admin.type.index'))->with('success', 'Place Type inserted successfully');
     }
 
@@ -85,8 +85,8 @@ class TypeController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:placetypes,name,'.$types->id,
             ]);
-    
-      
+
+
         $types->name = $request->name;
         $types->save();
 

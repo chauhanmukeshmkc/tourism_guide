@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
-use App\Guide;
+use App\Models\Guide;
 use Illuminate\Support\Carbon as SupportCarbon;
 
 class GuideController extends Controller
@@ -31,7 +31,7 @@ class GuideController extends Controller
      */
     public function create()
     {
-       
+
          return view('admin.guide.create');
     }
 
@@ -50,41 +50,41 @@ class GuideController extends Controller
             'contact' => 'required|unique:guides|numeric',
             'address' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg',
-            
+
             ]);
-    
+
             // Get Form Image
           $image = $request->file('image');
 
-         
+
           if (isset($image)) {
 
-                   
-             // Make Unique Name for Image 
+
+             // Make Unique Name for Image
             $currentDate = Carbon::now()->toDateString();
             $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-  
-  
+
+
           // Check Category Dir is exists
-  
+
               if (!Storage::disk('public')->exists('guide')) {
                  Storage::disk('public')->makeDirectory('guide');
               }
-  
-  
+
+
               // Resize Image for category and upload
               $GuideImage = Image::make($image)->resize(180,210)->stream();
               Storage::disk('public')->put('guide/'.$imageName,$GuideImage);
-  
+
      }else{
       $imageName = "default.png";
      }
-  
+
     $guide = new Guide();
     //$students->user_id = Auth::id();
     $guide->name = $request->name;
 
-    
+
     $guide->nid = $request->nid;
     $guide->image = $imageName;
     $guide->email = $request->email;
@@ -103,7 +103,7 @@ class GuideController extends Controller
      */
     public function show(Guide $guide)
     {
-    
+
       return view('admin.guide.show',compact('guide'));
 
     }
@@ -138,34 +138,34 @@ class GuideController extends Controller
             'address' => 'required',
             'image' => 'mimes:jpeg,png,jpg|image',
             ]);
-    
-      
+
+
         // Get Form Image
         $image = $request->file('image');
         if (isset($image)) {
-        // Make Unique Name for Image 
+        // Make Unique Name for Image
         $currentDate = Carbon::now()->toDateString();
         $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-  
-  
+
+
         // Check Category Dir is exists
         if (!Storage::disk('public')->exists('guide')) {
             Storage::disk('public')->makeDirectory('guide');
         }
-  
+
         // Delete old post image
         if(Storage::disk('public')->exists('guide/'.$guide->image)){
             Storage::disk('public')->delete('guide/'.$guide->image);
         }
-  
+
         // Resize Image for category and upload
         $GuideImage = Image::make($image)->resize(180,210)->stream();
         Storage::disk('public')->put('guide/'.$imageName,$GuideImage);
-  
+
      }else{
         $imageName = $guide->image;
      }
-  
+
 
     $guide->name = $request->name;
     $guide->nid = $request->nid;
@@ -186,7 +186,7 @@ class GuideController extends Controller
      */
     public function destroy(Guide $guide)
     {
-         
+
         // Delete image
         if(Storage::disk('public')->exists('guide/'.$guide->image)){
                 Storage::disk('public')->delete('guide/'.$guide->image);

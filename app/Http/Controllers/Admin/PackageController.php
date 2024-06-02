@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Guide;
+use App\Models\Guide;
 use App\Http\Controllers\Controller;
-use App\Package;
-use App\Place;
+use App\Models\Package;
+use App\Models\Place;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,7 +58,7 @@ class PackageController extends Controller
       $image = $request->file('package_image');
       if (isset($image)) {
 
-         // Make Unique Name for Image 
+         // Make Unique Name for Image
         $currentDate = Carbon::now()->toDateString();
         $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
@@ -109,7 +109,7 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Package $package)
-    {   
+    {
         $places =  Place::latest()->get();
         return view('admin.package.edit')->with('package', $package)->with('places', $places);
     }
@@ -139,14 +139,14 @@ class PackageController extends Controller
         $image = $request->file('package_image');
         if (isset($image)) {
 
-        // Make Unique Name for Image 
+        // Make Unique Name for Image
         $currentDate = Carbon::now()->toDateString();
         $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
 
       // Check Category Dir is exists
 
-          if (!Storage::disk('public')->exists('packageImage')) 
+          if (!Storage::disk('public')->exists('packageImage'))
           {
              Storage::disk('public')->makeDirectory('packageImage');
           }
@@ -187,7 +187,7 @@ class PackageController extends Controller
         {
             Storage::disk('public')->delete('packageImage/'.$package->package_image);
         }
-        
+
         $package->places()->detach();
         $package->delete();
         return redirect(route('admin.package.index'))->with('success', 'Package Removed Successfully');

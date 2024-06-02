@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\About;
-use App\Booking;
-use App\District;
-use App\Guide;
-use App\Package;
-use App\Place;
+use App\Models\{About,Booking,District,Guide,Package,Place};
 use App\Placetype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       
+
     }
 
     /**
@@ -90,7 +85,7 @@ class HomeController extends Controller
 
     public function packageBooking($id){
 
-       
+
         $guides = Guide::where('status', 1)->get();
         $package = Package::where('id', $id)->first();
         return view('bookingForm', compact('guides', 'package'));
@@ -103,7 +98,7 @@ class HomeController extends Controller
             'guide' => 'required',
             'date' => 'required',
         ]);
-    
+
 
 
         $guide_id = $request->guide;

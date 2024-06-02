@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\About;
+use App\Models\About;
 
 class AboutController extends Controller
 {
@@ -16,9 +16,9 @@ class AboutController extends Controller
     public function index()
     {
         $abouts=About::where('id',1)->get();
-        //dd($abouts->count());
+        // dd($abouts->count());
         return view('admin.about.index',compact('abouts'));
-       
+
     }
 
     /**
@@ -42,11 +42,11 @@ class AboutController extends Controller
         $this->validate($request,[
             'content' => 'required'
             ]);
-    
+
             $about = new About();
             $about->content = $request->content;
             $about->save();
-    
+
             return redirect(route('admin.about.index'))->with('success', 'About  inserted successfully');
     }
 
@@ -69,7 +69,8 @@ class AboutController extends Controller
      */
     public function edit(About $about)
     {
-         return view('admin.about.edit',compact('about',$about));
+        // dd($about);
+        return view('admin.about.edit',compact('about'));
     }
 
     /**
@@ -85,8 +86,8 @@ class AboutController extends Controller
         $this->validate($request,[
             'content' => 'required'
             ]);
-    
-      
+
+
         $abouts->content = $request->content;
         $abouts->save();
 

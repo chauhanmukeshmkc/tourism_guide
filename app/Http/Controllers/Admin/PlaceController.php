@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\District;
+use App\Models\District;
 use App\Http\Controllers\Controller;
-use App\Place;
+use App\Models\Place;
 use App\Placetype;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Image;
 
 class PlaceController extends Controller
 {
@@ -53,31 +53,31 @@ class PlaceController extends Controller
                 'image' => 'required|mimes:jpeg,png,jpg',
                 'description' => 'required',
             ]);
-    
+
             // Get Form Image
           $image = $request->file('image');
           if (isset($image)) {
 
-             // Make Unique Name for Image 
+             // Make Unique Name for Image
             $currentDate = Carbon::now()->toDateString();
             $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-  
-  
+
+
           // Check Category Dir is exists
-  
+
               if (!Storage::disk('public')->exists('place')) {
                  Storage::disk('public')->makeDirectory('place');
               }
-  
-  
+
+
               // Resize Image for category and upload
-              $PlaceImage = Image::make($image)->resize(1000,600)->stream();
-              Storage::disk('public')->put('place/'.$imageName,$PlaceImage);
-  
+            //   $PlaceImage = Image::make($image)->resize(1000,600)->stream();
+              Storage::disk('public')->put('place/'.$imageName,$image);
+
      }else{
             $imageName = "default.png";
      }
-  
+
     $place = new Place();
     $place->addedBy = Auth::user()->name;
     $place->name = $request->name;
@@ -136,25 +136,25 @@ class PlaceController extends Controller
         // Get Form Image
         $image = $request->file('image');
         if (isset($image)) {
-                // Make Unique Name for Image 
+                // Make Unique Name for Image
                 $currentDate = Carbon::now()->toDateString();
                 $imageName =$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-        
-        
+
+
                 // Check Category Dir is exists
                 if (!Storage::disk('public')->exists('place')) {
                     Storage::disk('public')->makeDirectory('place');
                 }
-        
+
                 // Delete old post image
                 if(Storage::disk('public')->exists('place/'.$place->image)){
                     Storage::disk('public')->delete('place/'.$place->image);
                 }
-        
+
                 // Resize Image for category and upload
                 $PlaceImage = Image::make($image)->resize(1000,600)->stream();
                 Storage::disk('public')->put('place/'.$imageName,$PlaceImage);
-        
+
         }else{
             $imageName = $place->image;
         }
@@ -177,7 +177,7 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-    
+
         $place->delete();
         return redirect(route('admin.place.index'))->with('success', 'Place Information deleted Successfully');
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\District;
+use App\Models\District;
 
 class DistrictController extends Controller
 {
@@ -41,11 +41,11 @@ class DistrictController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:districts'
             ]);
-    
+
             $districts = new District();
             $districts->name = $request->name;
             $districts->save();
-    
+
             return redirect(route('admin.district.index'))->with('success', 'District name inserted successfully');
     }
 
@@ -85,8 +85,8 @@ class DistrictController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:districts,name,'.$districts->id,
             ]);
-    
-      
+
+
         $districts->name = $request->name;
         $districts->save();
 
@@ -103,7 +103,7 @@ class DistrictController extends Controller
     {
         if($district->places->count() > 0){
             return redirect()->back()->with('danger', 'District cannot be deleted, because it has some places');
-        } 
+        }
 
         $district->delete();
         return redirect(route('admin.district.index'))->with('success', 'District deleted Successfully');
