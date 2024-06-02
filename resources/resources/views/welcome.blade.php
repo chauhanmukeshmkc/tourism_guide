@@ -21,9 +21,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<p class="promo-title">TRAVEL SPOTLIGHT</p>
-				<p class="text-justify lead"> Bangladesh Tourism Guide is the place to discover the stunning beauty that resides in the tourism spots
-                     of Bangladesh. Our objective is to make it easier for you to enjoy all these amazing places.
-                     If you are the kind of person who loves to travel, then make sure to regularly check our posts so that you don’t miss the best tourism spots. </p>
+				<p class="text-justify lead">  Kathmandu, Nepal's capital, beckons with a vibrant cultural scene, stunning architecture, and spiritual treasures. Explore bustling markets, ancient temples, and serene stupas. Marvel at Durbar Square's historic charm and seek enlightenment at Swayambhunath. Kathmandu's blend of tradition and modernity offers travelers a captivating experience. With breathtaking vistas and warm hospitality, it's a destination that promises unforgettable memories and meaningful cultural encounters... </p>
 				<a href="{{ route('about') }}" class="btn btn-info py-2 px-3"><strong>Details</strong></a>
 			</div>
 			<div class="col-md-6 text-center">

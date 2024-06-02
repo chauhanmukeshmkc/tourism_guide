@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Place;
 use Illuminate\Http\Request;
-use App\Placetype;
+use App\Models\Placetype;
 
 class TypeController extends Controller
 {

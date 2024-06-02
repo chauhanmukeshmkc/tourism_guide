@@ -71,8 +71,8 @@ class PackageController extends Controller
 
 
           // Resize Image for category and upload
-          $PlaceImage = Image::make($image)->resize(1000,600)->stream();
-          Storage::disk('public')->put('packageImage/'.$imageName,$PlaceImage);
+
+          Storage::disk('public')->put('packageImage/'.$imageName,$image);
 
         }
 
@@ -158,8 +158,7 @@ class PackageController extends Controller
 
 
             // Resize Image for category and upload
-            $PlaceImage = Image::make($image)->resize(1000,600)->stream();
-            Storage::disk('public')->put('packageImage/'.$imageName,$PlaceImage);
+            Storage::disk('public')->put('packageImage/'.$imageName,$image);
             $package->package_image = $imageName;
         }
 

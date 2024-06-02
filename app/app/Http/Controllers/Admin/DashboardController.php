@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Package,District,Guide,Place,User};
-use App\Placetype;
+use App\Models\{Package,District,Guide,Place,User,Placetype};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;

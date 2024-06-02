@@ -73,8 +73,7 @@ class GuideController extends Controller
 
 
               // Resize Image for category and upload
-              $GuideImage = Image::make($image)->resize(180,210)->stream();
-              Storage::disk('public')->put('guide/'.$imageName,$GuideImage);
+              Storage::disk('public')->put('guide/'.$imageName,$image);
 
      }else{
       $imageName = "default.png";

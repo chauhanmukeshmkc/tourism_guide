@@ -22,9 +22,9 @@
        
         <div class="col-md-4">
           <h2 class="head">Our Location</h2>
-          <p> <i class="fas fa-map-marker-alt"></i> Amberkhana, Sylhet</p>
-          <p><i class="fas fa-phone"></i> +88 0189562356</p>
-          <p><i class="fas fa-envelope"></i> tourist-guide@gmail.com</p>
+          <p> <i class="fas fa-map-marker-alt"></i> Nepal, Kathmandu</p>
+          <p><i class="fas fa-phone"></i> +977 9845850276</p>
+          <p><i class="fas fa-envelope"></i> chauhanmukeshmkc@gmail.com</p>
         </div>
       </div>
       <hr style="background-color: white;" class="pb-0">
